@@ -1,0 +1,27 @@
+# Ignorar archivos de Python
+__pycache__/
+*.py[cod]
+
+# Ignorar entornos virtuales
+venv/
+env/
+
+# Ignorar archivos de configuración de IDE
+.idea/
+.vscode/
+
+# Ignorar archivos de Git
+.git
+.gitignore
+
+# Ignorar archivos de Docker
+*.log
+*.env
+
+# Ignorar archivos de caché
+*.pyo
+*.pyd
+
+# Ignorar archivos temporales
+*.tmp
+*.temp

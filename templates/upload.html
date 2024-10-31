@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Upload</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<h1>Sube una imagen para OCR</h1>
+<form action="/ocr" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" accept="image/*" required>
+    <button type="submit">Subir</button>
+</form>
+</body>
+</html>

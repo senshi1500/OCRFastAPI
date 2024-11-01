@@ -3,7 +3,6 @@
 title {
     display:none;
 }
-
 /* Establecer un estilo básico para el body */
 body {
     display: flex; /* Usar flexbox para centrar el contenido */
@@ -18,14 +17,85 @@ body {
     margin: 0; /* Sin margen por defecto */
 }
 
-/* Estilo para el header */
 header {
-    width: 100%; /* Asegúrate de que el header ocupe todo el ancho */
+    display: flex; /* Usar flexbox para organizar los elementos */
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: center; /* Centrar verticalmente */
+    width: 100%; /* Asegúrate de que el header ocupe to do el ancho */
     background-color: #f8f9fa; /* Color de fondo */
     padding: 10px; /* Espacio interno */
-    text-align: center; /* Centrar el contenido */
     border-bottom: 1px solid #ccc; /* Borde inferior */
     z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+.language-selector {
+    margin-left: auto; /* Empuja el selector de idiomas al extremo derecho */
+}
+
+.language-selector label {
+    margin-right: 5px; /* Espacio entre la etiqueta y el selector */
+}
+
+.toggle-switch {
+    position: relative;
+    width: 100px;
+    height: 3em;
+    --light: #d8dbe0;
+    --dark: #28292c;
+    --link: rgb(27, 129, 112);
+    --link-hover: rgb(24, 94, 82);
+}
+
+.switch-label {
+    position: absolute;
+    width: 100%;
+    height: 3em;
+    background-color: var(--dark);
+    border-radius: 25px;
+    cursor: pointer;
+    border: 3px solid var(--dark);
+}
+
+.checkbox {
+    position: absolute;
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.checkbox:checked ~ .slider {
+    background-color: var(--light);
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    -webkit-box-shadow: inset 12px -4px 0px 0px var(--light);
+    box-shadow: inset 12px -4px 0px 0px var(--light);
+    background-color: var(--dark);
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.checkbox:checked ~ .slider::before {
+    -webkit-transform: translateX(50px);
+    -ms-transform: translateX(50px);
+    transform: translateX(50px);
+    background-color: var(--dark);
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 /* Estilo para el contenedor */
@@ -103,7 +173,7 @@ button:hover {
 
 /* Estilo para el footer */
 footer {
-    width: 100%; /* Asegúrate de que el footer ocupe todo el ancho */
+    width: 100%; /* Asegúrate de que el footer ocupe to do el ancho */
     background-color: #f8f9fa; /* Color de fondo */
     text-align: center; /* Centrar el texto */
     padding: 10px; /* Espacio interno */

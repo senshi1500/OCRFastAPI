@@ -12,6 +12,7 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'  # Cambia esto según tu instalación
+# pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract' # Para el contenedor de docker
 
 @app.get("/", response_class=HTMLResponse)
 def read_root(request: Request):

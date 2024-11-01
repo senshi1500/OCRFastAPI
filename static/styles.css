@@ -22,7 +22,7 @@ header {
     justify-content: space-between; /* Espacio entre los elementos */
     align-items: center; /* Centrar verticalmente */
     width: 100%; /* Asegúrate de que el header ocupe to do el ancho */
-    background-color: #f8f9fa; /* Color de fondo */
+    background-color: #222; /* Color de fondo */
     padding: 10px; /* Espacio interno */
     border-bottom: 1px solid #ccc; /* Borde inferior */
     z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
@@ -30,10 +30,12 @@ header {
 
 .language-selector {
     margin-left: auto; /* Empuja el selector de idiomas al extremo derecho */
+    color: #fff;
 }
 
 .language-selector label {
-    margin-right: 5px; /* Espacio entre la etiqueta y el selector */
+    margin-right: 2em; /* Espacio entre la etiqueta y el selector */
+    color: #fff;
 }
 
 .toggle-switch {
@@ -174,10 +176,11 @@ button:hover {
 /* Estilo para el footer */
 footer {
     width: 100%; /* Asegúrate de que el footer ocupe to do el ancho */
-    background-color: #f8f9fa; /* Color de fondo */
+    background-color: #222; /* Color de fondo */
     text-align: center; /* Centrar el texto */
     padding: 10px; /* Espacio interno */
     border-top: 1px solid #ccc; /* Borde superior */
+    color: #fff;
 }
 
 /* Media Queries para pantallas más pequeñas */

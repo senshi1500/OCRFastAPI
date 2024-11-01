@@ -1,12 +1,64 @@
+/* styles.css */
+
+title {
+    display:none;
+}
+/* Establecer un estilo básico para el body */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+    display: flex; /* Usar flexbox para centrar el contenido */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    min-height: 100vh; /* Asegurarse de que ocupe toda la altura de la ventana */
+    font-family: var(--tipo-principal); /* Usar la tipografía definida en el reset */
+    color: var(--main-font-color); /* Usar el color definido en el reset */
+    background-color: #ffffff; /* Color de fondo */
 }
 
+/* Estilo para el contenedor */
+.container {
+    display: grid; /* Activar el grid */
+    grid-template-columns: 1fr; /* Una sola columna */
+    gap: 1em; /* Espacio entre los elementos */
+    text-align: center; /* Centrar el texto dentro del contenedor */
+}
+
+/* Estilo para el encabezado */
 h1 {
-    color: #333;
+    margin-bottom: 2em; /* Espacio debajo del encabezado */
+    font-size: 5em;
+
 }
 
+/* Estilo para el formulario */
 form {
-    margin-top: 20px;
+    display: flex; /* Usar flexbox para el formulario */
+    flex-direction: column; /* Alinear los elementos en columna */
+    align-items: center; /* Centrar horizontalmente */
+}
+
+/* Estilo para los inputs y botones */
+input[type="file"], button {
+    margin: 10px 0; /* Espacio entre los elementos */
+    padding: 10px; /* Espacio interno */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 4px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+}
+
+/* Estilo para el botón */
+button {
+    background-color: var(--main-font-color); /* Color de fondo del botón */
+    color: #ffffff; /* Color del texto del botón */
+    transition: background-color 0.3s; /* Transición suave para el hover */
+}
+
+/* Efecto hover para el botón */
+button:hover {
+    background-color: #555; /* Color de fondo al pasar el mouse */
+}
+
+#editor {
+    width: 100%;
+    height: 8em;
 }

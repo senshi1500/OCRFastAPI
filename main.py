@@ -11,15 +11,15 @@ from fastapi import Request
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
-
+pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
 
 @app.get("/", response_class=HTMLResponse)
 def read_root(request: Request):
-    return templates.TemplateResponse("upload.html", {"request": request})
+    return templates.TemplateResponse("upload.html", {"request": request, "extracted_text": None})
 
 
 @app.post("/ocr")
-async def perform_ocr(image: UploadFile = File(...)):
+async def ocr(request: Request, image: UploadFile = File(...)):
     # Leer la imagen
     image_data = await image.read()
     image_np = np.frombuffer(image_data, np.uint8)
@@ -29,6 +29,6 @@ async def perform_ocr(image: UploadFile = File(...)):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # Realizar OCR
-    text = pytesseract.image_to_string(gray, lang='spa')  # Cambia 'spa' por 'eng' si es en inglés
+    extracted_text = pytesseract.image_to_string(gray, lang='spa')  # Cambia 'spa' por 'eng' si es en inglés
 
-    return {"OCR Text": text}
+    return templates.TemplateResponse("upload.html", {"request": request, "extracted_text": extracted_text})

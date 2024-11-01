@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCR Upload</title>
+    <title>OCR Index</title>
     <link rel="stylesheet" href="/static/reset.css">
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-<h1>Sube una imagen para OCR</h1>
-<form action="/ocr" method="post" enctype="multipart/form-data">
-    <input type="file" name="image" accept="image/*" required>
-    <button type="submit">Subir</button>
-</form>
+<div class="container"> <!-- Contenedor para el grid -->
+    <h1>Sube una imagen para OCR</h1>
+    <form action="/ocr" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit">Subir</button>
+    </form>
+
+    {% if extracted_text %}
+    <div>
+        <h2>Texto Extraído:</h2>
+        <textarea id="editor" placeholder="Edita el texto aquí...">{{ extracted_text }}</textarea>
+    </div>
+    {% endif %}
+</div>
 </body>
 </html>

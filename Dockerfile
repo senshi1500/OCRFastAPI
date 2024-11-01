@@ -3,13 +3,18 @@ FROM python:3.12-slim
 
 # Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
-    gcc \
+    tesseract-ocr \
+    tesseract-ocr-spa \
     libtesseract-dev \
     libleptonica-dev \
     libgl1-mesa-glx \
     libglib2.0-0 \
+    gcc \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# Configurar la variable de entorno TESSDATA_PREFIX
+ENV TESSDATA_PREFIX=/usr/share/tesseract-ocr/5/tessdata
 
 # Establecer el directorio de trabajo
 WORKDIR /app

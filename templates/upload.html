@@ -18,7 +18,11 @@
     {% if extracted_text %}
     <div>
         <h2>Texto Extraído:</h2>
-        <textarea id="editor" placeholder="Edita el texto aquí...">{{ extracted_text }}</textarea>
+        <textarea id="editor" name="edited_text" placeholder="Edita el texto aquí...">{{ extracted_text }}</textarea>
+        <form action="/download" method="get"> <!-- Cambiar a method="get" -->
+            <input type="hidden" name="edited_text" value="{{ extracted_text }}">
+            <button type="submit">Descargar Texto</button>
+        </form>
     </div>
     {% endif %}
 </div>

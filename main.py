@@ -1,5 +1,5 @@
 from fastapi import FastAPI, File, UploadFile, Form
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import pytesseract
@@ -32,3 +32,15 @@ async def ocr(request: Request, image: UploadFile = File(...)):
     extracted_text = pytesseract.image_to_string(gray, lang='spa')  # Cambia 'spa' por 'eng' si es en inglés
 
     return templates.TemplateResponse("upload.html", {"request": request, "extracted_text": extracted_text})
+
+
+# Ruta para descargar el texto
+@app.get("/download")
+async def download_text(edited_text: str):
+    # Guardar el texto en un archivo temporal
+    file_path = "texto_guardado.txt"
+    with open(file_path, "w", encoding="utf-8") as f:
+        f.write(edited_text)
+
+    # Proporcionar el archivo para descargar
+    return FileResponse(file_path, media_type='text/plain', filename='texto_guardado.txt')

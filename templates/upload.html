@@ -8,10 +8,20 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-<div class="container"> <!-- Contenedor para el grid -->
+<header>
+    <!--TODO termina el boton para cambiar a modo obscuro-->
+    <div class="toggle-switch">
+        <label class="switch-label">
+            <input type="checkbox" class="checkbox">
+            <span class="slider"></span>
+        </label>
+    </div>
+</header>
+<div class="container">
     <h1>Sube una imagen para OCR</h1>
     <form action="/ocr" method="post" enctype="multipart/form-data">
-        <input type="file" name="image" accept="image/*" required>
+        <input type="file" id="file-upload" name="image" accept="image/*" required style="display: none;">
+        <label for="file-upload" class="file-upload-label">Seleccionar archivo</label>
         <button type="submit">Subir</button>
     </form>
 
@@ -26,5 +36,8 @@
     </div>
     {% endif %}
 </div>
+<footer>
+    <p>Este es solo un proyecto de prueba para mostrar en mi portafolio.</p>
+</footer>
 </body>
 </html>

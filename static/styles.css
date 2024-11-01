@@ -3,16 +3,29 @@
 title {
     display:none;
 }
+
 /* Establecer un estilo básico para el body */
 body {
     display: flex; /* Usar flexbox para centrar el contenido */
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
+    flex-direction: column; /* Apilar elementos verticalmente */
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
     min-height: 100vh; /* Asegurarse de que ocupe toda la altura de la ventana */
     font-family: var(--tipo-principal); /* Usar la tipografía definida en el reset */
     color: var(--main-font-color); /* Usar el color definido en el reset */
     background-color: #ffffff; /* Color de fondo */
-    padding: 1em; /* Espacio alrededor del contenido */
+    padding: 0; /* Sin espacio alrededor del contenido */
+    margin: 0; /* Sin margen por defecto */
+}
+
+/* Estilo para el header */
+header {
+    width: 100%; /* Asegúrate de que el header ocupe todo el ancho */
+    background-color: #f8f9fa; /* Color de fondo */
+    padding: 10px; /* Espacio interno */
+    text-align: center; /* Centrar el contenido */
+    border-bottom: 1px solid #ccc; /* Borde inferior */
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
 }
 
 /* Estilo para el contenedor */
@@ -23,10 +36,13 @@ body {
     text-align: center; /* Centrar el texto dentro del contenedor */
     max-width: 600px; /* Ancho máximo del contenedor */
     width: 100%; /* Ancho completo en pantallas pequeñas */
+    flex: 1; /* Permitir que el contenedor crezca y ocupe el espacio disponible */
+    padding: 1em; /* Espacio interno para el contenedor */
 }
 
 /* Estilo para el encabezado */
 h1 {
+    margin-top: 1em;
     margin-bottom: 1em; /* Espacio debajo del encabezado */
     font-size: 2.5em;
 
@@ -50,6 +66,23 @@ input[type="file"], button {
     width: 100%; /* Ancho completo */
 }
 
+/* Estilo para el label que actúa como botón de carga */
+.file-upload-label {
+    display: inline-block; /* Permitir que el label se comporte como un botón */
+    padding: 1em 1.5em; /* Espacio interno */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 4px; /* Bordes redondeados */
+    background-color: var(--main-font-color); /* Color de fondo */
+    color: #ffffff; /* Color del texto */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+    transition: background-color 0.3s; /* Transición suave para el hover */
+}
+
+.file-upload-label:hover {
+    background-color: #555; /* Color de fondo al pasar el mouse */
+}
+
 /* Estilo para el botón */
 button {
     background-color: var(--main-font-color); /* Color de fondo del botón */
@@ -64,7 +97,17 @@ button:hover {
 
 #editor {
     width: 100%;
-    height: 8em;
+    height: 200px; /* Altura fija */
+    resize: vertical; /* Permitir que el usuario ajuste la altura */
+}
+
+/* Estilo para el footer */
+footer {
+    width: 100%; /* Asegúrate de que el footer ocupe todo el ancho */
+    background-color: #f8f9fa; /* Color de fondo */
+    text-align: center; /* Centrar el texto */
+    padding: 10px; /* Espacio interno */
+    border-top: 1px solid #ccc; /* Borde superior */
 }
 
 /* Media Queries para pantallas más pequeñas */

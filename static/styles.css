@@ -12,6 +12,7 @@ body {
     font-family: var(--tipo-principal); /* Usar la tipografía definida en el reset */
     color: var(--main-font-color); /* Usar el color definido en el reset */
     background-color: #ffffff; /* Color de fondo */
+    padding: 1em; /* Espacio alrededor del contenido */
 }
 
 /* Estilo para el contenedor */
@@ -20,12 +21,14 @@ body {
     grid-template-columns: 1fr; /* Una sola columna */
     gap: 1em; /* Espacio entre los elementos */
     text-align: center; /* Centrar el texto dentro del contenedor */
+    max-width: 600px; /* Ancho máximo del contenedor */
+    width: 100%; /* Ancho completo en pantallas pequeñas */
 }
 
 /* Estilo para el encabezado */
 h1 {
-    margin-bottom: 2em; /* Espacio debajo del encabezado */
-    font-size: 5em;
+    margin-bottom: 1em; /* Espacio debajo del encabezado */
+    font-size: 2.5em;
 
 }
 
@@ -42,8 +45,9 @@ input[type="file"], button {
     padding: 10px; /* Espacio interno */
     border: 1px solid #ccc; /* Borde */
     border-radius: 4px; /* Bordes redondeados */
-    font-size: 16px; /* Tamaño de fuente */
+    font-size: 1em; /* Tamaño de fuente relativo */
     cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+    width: 100%; /* Ancho completo */
 }
 
 /* Estilo para el botón */
@@ -61,4 +65,15 @@ button:hover {
 #editor {
     width: 100%;
     height: 8em;
+}
+
+/* Media Queries para pantallas más pequeñas */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+    }
+
+    .container {
+        padding: 1em; /* Espacio alrededor del contenedor */
+    }
 }

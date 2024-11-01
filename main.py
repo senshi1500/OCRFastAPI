@@ -19,7 +19,7 @@ def read_root(request: Request):
     return templates.TemplateResponse("upload.html", {"request": request, "extracted_text": None})
 
 
-@app.post("/ocr")
+@app.post("/ocr", response_class=HTMLResponse)
 async def ocr(request: Request, image: UploadFile = File(...)):
     # Leer la imagen
     image_data = await image.read()
@@ -32,6 +32,7 @@ async def ocr(request: Request, image: UploadFile = File(...)):
     # Realizar OCR
     extracted_text = pytesseract.image_to_string(gray, lang='spa')  # Cambia 'spa' por 'eng' si es en inglés
 
+    # Renderizar la plantilla con el texto extraído
     return templates.TemplateResponse("upload.html", {"request": request, "extracted_text": extracted_text})
 
 

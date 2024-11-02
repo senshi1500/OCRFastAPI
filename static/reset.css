@@ -11,20 +11,22 @@
 */
 /* Aquí definimos las Custom properties */
 :root {
-    --negro: #393939;
     /* Tipografía */
     --tipo-principal: Helvetica, Arial, sans-serif;
     --tipo-secundaria: Verdana;
+    /* colors */
     --main-font-color: #ececec;
+    --background-color: #393939;
+    --medium-color: #555;
 }
 
 /* Las adaptamos al modo oscuro */
-@media (prefers-color-scheme: dark) {
+/*@media (prefers-color-scheme: dark) {
     :root {
-        --negro: #ececec;
+        --background-color: #ececec;
         --main-font-color: #393939;
     }
-}
+}*/
 /* Opcional */
 /* Configuramos si un usuario ha activado el modo alto contraste. (WD) */
 /* Opcional */

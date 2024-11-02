@@ -13,7 +13,7 @@
     <header>
         <div class="toggle-switch">
             <label class="switch-label">
-                <input type="checkbox" class="checkbox">
+                <input type="checkbox" class="checkbox" id="theme-toggle">
                 <span class="slider"></span>
             </label>
         </div>
@@ -32,6 +32,28 @@
     {% block scripts %}
 
     {% endblock %}
+
 </div>
+<script>
+    // Función para cambiar el tema
+    const toggleSwitch = document.getElementById('theme-toggle');
+
+    // Verificar el estado del tema al cargar la página
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+        toggleSwitch.checked = true; // Mantener el checkbox marcado
+    }
+
+    // Agregar un evento al checkbox
+    toggleSwitch.addEventListener('change', function() {
+        if (this.checked) {
+            document.body.classList.add('dark-mode');
+            localStorage.setItem('dark-mode', 'enabled'); // Guardar el estado en localStorage
+        } else {
+            document.body.classList.remove('dark-mode');
+            localStorage.setItem('dark-mode', 'disabled'); // Guardar el estado en localStorage
+        }
+    });
+</script>
 </body>
 </html>

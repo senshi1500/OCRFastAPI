@@ -14,10 +14,17 @@ html, body {
     margin: 0; /* Elimina el margen por defecto */
 }
 
+/* Estilos generales */
 body {
-    font-family: var(--tipo-principal); /* Usar la tipografía definida en el reset */
-    color: var(--main-font-color); /* Usar el color definido en el reset */
-    background-color: #ffffff; /* Color de fondo */
+    font-family: var(--tipo-principal);
+    color: var(--main-font-color);
+    background-color: var(--background-color);
+}
+
+/* Modo oscuro */
+body.dark-mode {
+    --main-font-color: #393939; /* Color de texto en modo oscuro */
+    --background-color: #ececec; /* Color de fondo en modo oscuro */
 }
 
 .wrapper {
@@ -145,17 +152,6 @@ form {
     align-items: center; /* Centrar horizontalmente */
 }
 
-/* Estilo para los inputs y botones */
-button {
-    margin: 10px 0; /* Espacio entre los elementos */
-    padding: 10px; /* Espacio interno */
-    border: 1px solid #ccc; /* Borde */
-    border-radius: 4px; /* Bordes redondeados */
-    font-size: 1em; /* Tamaño de fuente relativo */
-    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
-    width: 100%; /* Ancho completo */
-}
-
 .custum-file-upload {
     height: 200px;
     width: 300px;
@@ -199,22 +195,74 @@ button {
     display: none;
 }
 
+
 /* Estilo para el botón */
 button {
     background-color: var(--main-font-color); /* Color de fondo del botón */
-    color: #ffffff; /* Color del texto del botón */
+    color: var(--background-color);
     transition: background-color 0.3s; /* Transición suave para el hover */
+    margin: 10px 0; /* Espacio entre los elementos */
+    padding: 10px; /* Espacio interno */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 4px; /* Bordes redondeados */
+    font-size: 1em; /* Tamaño de fuente relativo */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+    width: 100%; /* Ancho completo */
 }
 
 /* Efecto hover para el botón */
 button:hover {
-    background-color: #555; /* Color de fondo al pasar el mouse */
+    background-color: var(--medium-color); /* Color de fondo al pasar el mouse */
+}
+
+button.dark-mode {
+    --main-font-color: #ececec; /* Color de texto en modo oscuro */
+    --background-color: #393939;
+    --medium-color: #999;
+}
+
+/* Efecto hover para el botón en modo oscuro */
+body.dark-mode button {
+    background-color: var(--main-font-color); /* Color de fondo del botón en modo oscuro */
+    color: var(--background-color); /* Color del texto en modo oscuro */
+}
+
+body.dark-mode button:hover {
+    background-color: var(--medium-color); /* Color de fondo al pasar el mouse en modo oscuro */
+    color: var(--main-font-color); /* Cambiar el color del texto al pasar el mouse en modo oscuro */
 }
 
 #editor {
     width: 100%;
-    height: 200px; /* Altura fija */
+    height: 12em; /* Altura fija */
     resize: vertical; /* Permitir que el usuario ajuste la altura */
+}
+
+/* Estilos para el textarea */
+textarea {
+    padding: 10px; /* Espacio interno */
+    border: 1px solid var(--medium-color); /* Borde */
+    border-radius: 4px; /* Bordes redondeados */
+    font-size: 1em; /* Tamaño de fuente */
+    font-family: var(--tipo-principal); /* Tipografía */
+    color: var(--background-color); /* Color del texto */
+    background-color: var(--main-font-color); /* Color de fondo */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+    resize: vertical; /* Permitir redimensionar verticalmente */
+}
+
+/* Estilos para el textarea en modo oscuro */
+body.dark-mode textarea {
+    border: 1px solid var(--main-font-color); /* Borde en modo oscuro */
+    background-color: var(--background-color); /* Color de fondo en modo oscuro */
+    color: var(--main-font-color); /* Color del texto en modo oscuro */
+}
+
+/* Efecto de enfoque en el textarea */
+textarea:focus {
+    outline: none; /* Eliminar el contorno predeterminado */
+    border-color: var(--medium-color); /* Cambiar el color del borde al enfocar */
+    box-shadow: 0 0 5px var(--medium-color); /* Sombra para el enfoque */
 }
 
 /* Estilo para el footer */

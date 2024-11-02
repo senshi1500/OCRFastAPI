@@ -21,13 +21,18 @@
             <label for="language">Idioma:</label>
             <select id="language" name="language">
                 <option value="es">Español</option>
-                <option value="en">Inglés</option>
+                <option value="en">English</option>
             </select>
         </div>
     </header>
     <div id="content">{% block content %}{% endblock %}</div>
     <footer>
-        <p>Este es solo un proyecto de prueba para mostrar en mi portafolio.</p>
+        <div class="lang es">
+            <p>Este es solo un proyecto de prueba para mostrar en mi portafolio.</p>
+        </div>
+        <div class="lang en" style="display: none;">
+            <p>This is just a test project for show in my portafolio.</p>
+        </div>
     </footer>
     {% block scripts %}
 
@@ -53,6 +58,21 @@
             document.body.classList.remove('dark-mode');
             localStorage.setItem('dark-mode', 'disabled'); // Guardar el estado en localStorage
         }
+    });
+
+    const languageSelector = document.getElementById('language');
+    const contentDivs = document.querySelectorAll('#content .lang');
+
+    languageSelector.addEventListener('change', function() {
+        const selectedLanguage = this.value;
+
+        contentDivs.forEach(div => {
+            if (div.classList.contains(selectedLanguage)) {
+                div.style.display = 'block'; // Mostrar el contenido del idioma seleccionado
+            } else {
+                div.style.display = 'none'; // Ocultar el contenido de otros idiomas
+            }
+        });
     });
 </script>
 </body>

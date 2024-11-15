@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{% extends "base_en.html" %}
 
 {% block title %}OCR - Subir Imagen{% endblock %}
 
 {% block content %}
 <div class="container">
-    <h1>Sube una imagen para OCR</h1>
+    <h1>Upload image to the OCR</h1>
     <form action="/ocr" method="post" enctype="multipart/form-data">
         <label class="custum-file-upload" for="file">
             <div class="icon">
@@ -23,17 +23,17 @@
             </div>
             <input type="file" id="file" name="image" accept="image/*" required>
         </label>
-        <button type="submit">Subir</button>
+        <button type="submit">Upload</button>
     </form>
 
     {% if extracted_text %}
     <div>
-        <h2>Texto Extraído:</h2>
+        <h2>Text extracted:</h2>
         <textarea id="editor" name="edited_text" placeholder="Edita el texto aquí...">{{ extracted_text }}</textarea>
         <form action="/download" method="get">
             <input type="hidden" name="edited_text" value="{{ extracted_text }}">
-            <button type="submit">Descargar Texto</button>
-            <button type="submit">Copiar Texto</button>
+            <button type="submit">Download text</button>
+            <button type="submit">Copy text</button>
         </form>
     </div>
     {% endif %}

@@ -15,12 +15,15 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tessera
 # pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract' # Para el contenedor de docker
 
 @app.get("/", response_class=HTMLResponse)
-def read_root(request: Request):
-    return templates.TemplateResponse("upload.html", {"request": request, "extracted_text": None})
+def read_root(request: Request, lang_html: str = "es"):
+    try:
+        return templates.TemplateResponse(f"upload_{lang_html}.html", {"request": request, "extracted_text": None})
+    except Exception as e:
+        return HTMLResponse(content=f"Error: {str(e)}", status_code=500)
 
 
 @app.post("/ocr", response_class=HTMLResponse)
-async def ocr(request: Request, image: UploadFile = File(...)):
+async def ocr(request: Request, lang_html: str = "es", image: UploadFile = File(...)):
     # Leer la imagen
     image_data = await image.read()
     image_np = np.frombuffer(image_data, np.uint8)
@@ -33,7 +36,7 @@ async def ocr(request: Request, image: UploadFile = File(...)):
     extracted_text = pytesseract.image_to_string(gray, lang='spa')  # Cambia 'spa' por 'eng' si es en inglés
 
     # Renderizar la plantilla con el texto extraído
-    return templates.TemplateResponse("upload.html", {"request": request, "extracted_text": extracted_text})
+    return templates.TemplateResponse(f"base_{lang_html}.html", {"request": request, "extracted_text": extracted_text})
 
 
 # Ruta para descargar el texto
@@ -46,3 +49,16 @@ async def download_text(edited_text: str):
 
     # Proporcionar el archivo para descargar
     return FileResponse(file_path, media_type='text/plain', filename='texto_guardado.txt')
+
+
+@app.get("/upload", response_class=HTMLResponse)
+async def upload_page(request: Request, lang_html: str = "es"):
+    return templates.TemplateResponse(f"upload_{lang_html}.html", {"request": request})
+
+
+@app.post("/upload")
+async def upload_file(request: Request):
+    form = await request.form()
+    file = form.get("file")
+    # Aquí puedes manejar el archivo subido
+    return {"filename": file.filename}

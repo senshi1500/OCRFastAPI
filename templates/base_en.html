@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Mi Aplicación{% endblock %}</title>
+    <title>{% block title %}My Application{% endblock %}</title>
     <link rel="stylesheet" href="/static/reset.css">
     <link rel="stylesheet" href="/static/styles.css">
     {% block head %}{% endblock %}
@@ -18,61 +18,49 @@
             </label>
         </div>
         <div class="language-selector">
-            <label for="language">Idioma:</label>
+            <label for="language">Language:</label>
             <select id="language" name="language">
                 <option value="es">Español</option>
-                <option value="en">English</option>
+                <option value="en" selected>English</option>
             </select>
         </div>
     </header>
     <div id="content">{% block content %}{% endblock %}</div>
     <footer>
-        <div class="lang es">
-            <p>Este es solo un proyecto de prueba para mostrar en mi portafolio.</p>
-        </div>
-        <div class="lang en" style="display: none;">
+        <div>
             <p>This is just a test project for show in my portafolio.</p>
         </div>
     </footer>
-    {% block scripts %}
-
-    {% endblock %}
-
+    {% block scripts %}{% endblock %}
 </div>
 <script>
-    // Función para cambiar el tema
+    // Function to change the theme
     const toggleSwitch = document.getElementById('theme-toggle');
 
-    // Verificar el estado del tema al cargar la página
+    // Check the theme status on page load
     if (localStorage.getItem('dark-mode') === 'enabled') {
         document.body.classList.add('dark-mode');
-        toggleSwitch.checked = true; // Mantener el checkbox marcado
+        toggleSwitch.checked = true; // Keep the checkbox checked
     }
 
-    // Agregar un evento al checkbox
+    // Add an event to the checkbox
     toggleSwitch.addEventListener('change', function() {
         if (this.checked) {
             document.body.classList.add('dark-mode');
-            localStorage.setItem('dark-mode', 'enabled'); // Guardar el estado en localStorage
+            localStorage.setItem('dark-mode', 'enabled'); // Save the state in localStorage
         } else {
             document.body.classList.remove('dark-mode');
-            localStorage.setItem('dark-mode', 'disabled'); // Guardar el estado en localStorage
+            localStorage.setItem('dark-mode', 'disabled'); // Save the state in localStorage
         }
     });
 
+    // Handle language change
     const languageSelector = document.getElementById('language');
-    const contentDivs = document.querySelectorAll('#content .lang');
 
     languageSelector.addEventListener('change', function() {
         const selectedLanguage = this.value;
-
-        contentDivs.forEach(div => {
-            if (div.classList.contains(selectedLanguage)) {
-                div.style.display = 'block'; // Mostrar el contenido del idioma seleccionado
-            } else {
-                div.style.display = 'none'; // Ocultar el contenido de otros idiomas
-            }
-        });
+        // Redirect to the same page with the selected language
+        window.location.href = `/?lang_html=${selectedLanguage}`;
     });
 </script>
 </body>

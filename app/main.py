@@ -1,11 +1,9 @@
-from fastapi import FastAPI, File, UploadFile, Form
+from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import pytesseract
-from PIL import Image
-import cv2
-import numpy as np
+from app.api.OCR import process_image
 from fastapi import Request
 
 app = FastAPI()
@@ -16,6 +14,7 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tessera
 
 @app.get("/", response_class=HTMLResponse)
 def read_root(request: Request, lang_html: str = "es"):
+    """Vista principal de la application"""
     try:
         return templates.TemplateResponse(f"upload_{lang_html}.html", {"request": request, "extracted_text": None})
     except Exception as e:
@@ -24,24 +23,31 @@ def read_root(request: Request, lang_html: str = "es"):
 
 @app.post("/ocr", response_class=HTMLResponse)
 async def ocr(request: Request, lang_html: str = "es", image: UploadFile = File(...)):
-    # Leer la imagen
-    image_data = await image.read()
-    image_np = np.frombuffer(image_data, np.uint8)
-    img = cv2.imdecode(image_np, cv2.IMREAD_COLOR)
+    """
+        Realiza OCR en la imagen proporcionada y devuelve el texto extraído.
 
-    # Convertir la imagen a escala de grises
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        Args:
+            request (Request): La solicitud HTTP.
+            lang_html (str): El idioma para la plantilla HTML.
+            image (UploadFile): La imagen a procesar.
+
+        Returns:
+            HTMLResponse: La respuesta HTML con el texto extraído.
+        """
 
     # Realizar OCR
-    extracted_text = pytesseract.image_to_string(gray, lang='spa')  # Cambia 'spa' por 'eng' si es en inglés
-
-    # Renderizar la plantilla con el texto extraído
+    extracted_text = await process_image(image)
     return templates.TemplateResponse(f"base_{lang_html}.html", {"request": request, "extracted_text": extracted_text})
 
 
 # Ruta para descargar el texto
 @app.get("/download")
 async def download_text(edited_text: str):
+    """
+    Descarga el texto del input del HTML en un archivo .txt
+
+    edited_text: cadena de caracteres que proviene del textarea del HTML
+    """
     # Guardar el texto en un archivo temporal
     file_path = "texto_guardado.txt"
     with open(file_path, "w", encoding="utf-8") as f:
@@ -53,11 +59,13 @@ async def download_text(edited_text: str):
 
 @app.get("/upload", response_class=HTMLResponse)
 async def upload_page(request: Request, lang_html: str = "es"):
+    """Vista secundaria de la aplicacion con el texto extraído y pegado en el textarea"""
     return templates.TemplateResponse(f"upload_{lang_html}.html", {"request": request})
 
 
 @app.post("/upload")
 async def upload_file(request: Request):
+    """Sube la imagen del input file al backend para que lo analise en OCR"""
     form = await request.form()
     file = form.get("file")
     # Aquí puedes manejar el archivo subido

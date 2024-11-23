@@ -8,6 +8,10 @@ script {
     display:none;
 }
 
+style{
+    display:none;
+}
+
 /* Establecer un estilo básico para el body */
 html, body {
     height: 100%; /* Asegura que el body ocupe toda la altura de la ventana */
@@ -152,7 +156,8 @@ form {
     align-items: center; /* Centrar horizontalmente */
 }
 
-.custum-file-upload {
+
+.custom-file-upload {
     height: 200px;
     width: 300px;
     display: flex;

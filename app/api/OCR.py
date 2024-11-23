@@ -7,7 +7,7 @@ import cv2
 import numpy as np
 
 router = APIRouter()
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="app/templates")
 
 async def process_image(image: UploadFile):
     image_data = await image.read()

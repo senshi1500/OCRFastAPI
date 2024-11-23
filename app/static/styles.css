@@ -169,29 +169,29 @@ form {
     box-shadow: 0px 48px 35px -48px rgba(0,0,0,0.1);
 }
 
-.custum-file-upload .icon {
+.custom-file-upload .icon {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.custum-file-upload .icon svg {
+.custom-file-upload .icon svg {
     height: 80px;
     fill: rgba(75, 85, 99, 1);
 }
 
-.custum-file-upload .text {
+.custom-file-upload .text {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.custum-file-upload .text span {
+.custom-file-upload .text span {
     font-weight: 400;
     color: rgba(75, 85, 99, 1);
 }
 
-.custum-file-upload input {
+.custom-file-upload input {
     display: none;
 }
 

@@ -12,7 +12,7 @@
 <div class="wrapper">
     <header>
         <div class="toggle-switch">
-            <label class="switch-label">
+            <label class="switch-label" aria-label="Toggle theme">
                 <input type="checkbox" class="checkbox" id="theme-toggle">
                 <span class="slider"></span>
             </label>
@@ -28,7 +28,8 @@
     <div id="content">{% block content %}{% endblock %}</div>
     <footer>
         <div>
-            <p>This is just a test project for show in my portafolio.</p>
+            <p>This is just a test project to show in my portfolio.</p>
+            <p>&copy; 2024 Adrian Rivera Trujillo. All rights reserved.</p>
         </div>
     </footer>
     {% block scripts %}{% endblock %}

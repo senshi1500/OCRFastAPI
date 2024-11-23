@@ -21,7 +21,7 @@ def read_root(request: Request, lang_html: str = "es"):
         return HTMLResponse(content=f"Error: {str(e)}", status_code=500)
 
 
-@app.post("/ocr", response_class=HTMLResponse)
+@app.post("/v1/ocr", response_class=HTMLResponse)
 async def ocr(request: Request, lang_html: str = "es", image: UploadFile = File(...)):
     """
         Realiza OCR en la imagen proporcionada y devuelve el texto extraído.

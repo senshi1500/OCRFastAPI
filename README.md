@@ -22,22 +22,27 @@ Asegúrate de tener los siguientes requisitos antes de ejecutar la aplicación:
 
    ```bash
    git clone https://github.com/tu-usuario/ocr-fastapi.git
+   ```
 
 ### Entrar al directorio
-
+   ```bash
     cd OCRFasatAPI
+   ```
 
 ### Instalar las librerias
-
+   ```bash
     pip install -r requirements.txt
+   ```
 
 ### Levantar en local con uvicorn
-
+   ```bash
     uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+   ```
 
 ### Conctruir y Levantar el docker compose
-
+   ```bash
     docker-compose up --build
+   ```
 
 ## Uso
 
